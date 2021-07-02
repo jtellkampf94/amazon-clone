@@ -1,0 +1,38 @@
+@import "../../styles/variables";
+
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: $navy;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__logo {
+    width: 100px;
+    object-fit: contain;
+    margin: 0 20px;
+    margin-top: 18px;
+  }
+
+  &__search {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    border-radius: 24px;
+  }
+
+  &__searchInput {
+    height: 12px;
+    padding: 10px;
+    border: none;
+    width: 100%;
+  }
+
+  &__searchIcon {
+    padding: 5px;
+    height: 22px !important;
+    background-color: $orange;
+  }
+}
