@@ -35,4 +35,36 @@
     height: 22px !important;
     background-color: $orange;
   }
+
+  &__nav {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: $white;
+
+    &LineOne {
+      font-size: 10px;
+    }
+
+    &LineTwo {
+      font-size: 13px;
+      font-weight: 800;
+    }
+  }
+
+  &__optionBasket {
+    display: flex;
+    align-items: center;
+    color: $white;
+  }
+
+  &__basketCount {
+    margin: 0 10px;
+  }
 }
