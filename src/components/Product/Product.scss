@@ -26,6 +26,10 @@
     display: flex;
   }
 
+  &__star {
+    color: $primary-orange;
+  }
+
   & > img {
     max-height: 200px;
     object-fit: contain;

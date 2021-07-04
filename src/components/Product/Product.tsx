@@ -48,7 +48,7 @@ const Product: React.FC<ProductProps> = ({
           {Array(rating)
             .fill(0)
             .map(() => (
-              <StarIcon key={uuidv4()} />
+              <StarIcon key={uuidv4()} className="product__star" />
             ))}
         </div>
       </div>

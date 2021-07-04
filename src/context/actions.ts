@@ -13,4 +13,9 @@ interface AddToBasketAction {
   payload: Item;
 }
 
-export type Action = AddToBasketAction;
+interface RemoveFromBasketAction {
+  type: ActionTypes.REMOVE_FROM_BASKET;
+  payload: String;
+}
+
+export type Action = AddToBasketAction | RemoveFromBasketAction;

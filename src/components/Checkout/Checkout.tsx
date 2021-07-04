@@ -1,8 +1,16 @@
+import { v4 as uuidv4 } from "uuid";
+
+import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
 import Subtotal from "../Subtotal/Subtotal";
+import { useStateValue } from "../../context/stateProvider";
 
 import "./Checkout.scss";
 
 const Checkout: React.FC = () => {
+  const {
+    state: { basket }
+  } = useStateValue();
+
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -14,6 +22,10 @@ const Checkout: React.FC = () => {
 
         <div>
           <h2 className="checkout__title">Your Shopping Basket</h2>
+
+          {basket.map(item => (
+            <CheckoutProduct key={uuidv4()} {...item} />
+          ))}
         </div>
       </div>
 

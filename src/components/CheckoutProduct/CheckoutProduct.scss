@@ -1,0 +1,37 @@
+@import "../../styles/variables";
+
+.checkoutProduct {
+  display: flex;
+  margin: 20px 0;
+
+  &__info {
+    padding-left: 20px;
+
+    & > button {
+      background: $primary-orange;
+      border: 1px solid;
+      margin-top: 10px;
+      border-color: $secondary-orange $tertiary-orange $quarternary-orange;
+      color: $primary-navy;
+    }
+  }
+
+  &__image {
+    object-fit: contain;
+    width: 100px;
+    height: 100px;
+  }
+
+  &__rating {
+    display: flex;
+  }
+
+  &__star {
+    color: $primary-orange;
+  }
+
+  &__ title {
+    font-size: 17px;
+    font-weight: 800;
+  }
+}
