@@ -18,7 +18,7 @@ const Checkout: React.FC = () => {
       </div>
 
       <div className="checkout__right">
-        <Subtotal subtotal={500} />
+        <Subtotal />
       </div>
     </div>
   );

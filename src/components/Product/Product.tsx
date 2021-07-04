@@ -1,5 +1,9 @@
 import StarIcon from "@material-ui/icons/Star";
 import { v4 as uuidv4 } from "uuid";
+
+import { useStateValue } from "../../context/stateProvider";
+import { ActionTypes } from "../../context/types";
+
 import "./Product.scss";
 
 interface ProductProps {
@@ -10,7 +14,28 @@ interface ProductProps {
   rating: number;
 }
 
-const Product: React.FC<ProductProps> = ({ title, image, price, rating }) => {
+const Product: React.FC<ProductProps> = ({
+  id,
+  title,
+  image,
+  price,
+  rating
+}) => {
+  const { dispatch } = useStateValue();
+
+  const handleClick = (): void => {
+    dispatch({
+      type: ActionTypes.ADD_TO_BASKET,
+      payload: {
+        id,
+        title,
+        image,
+        price,
+        rating
+      }
+    });
+  };
+
   return (
     <div className="product">
       <div className="product__info">
@@ -30,7 +55,7 @@ const Product: React.FC<ProductProps> = ({ title, image, price, rating }) => {
 
       <img src={image} alt="Product Image" />
 
-      <button>Add to Basket</button>
+      <button onClick={handleClick}>Add to Basket</button>
     </div>
   );
 };

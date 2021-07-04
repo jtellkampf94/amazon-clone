@@ -1,16 +1,22 @@
 import CurrencyFormatter from "currency-formatter";
+
+import { getBasketTotal } from "../../context/reducer";
+import { useStateValue } from "../../context/stateProvider";
+
 import "./Subtotal.scss";
 
-interface SubtotalProps {
-  subtotal: number;
-}
+const Subtotal: React.FC = () => {
+  const {
+    state: { basket }
+  } = useStateValue();
 
-const Subtotal: React.FC<SubtotalProps> = ({ subtotal }) => {
   return (
     <div className="subtotal">
       <p>
-        Subtotal (0 items):{" "}
-        <strong>{CurrencyFormatter.format(subtotal, { code: "USD" })}</strong>
+        Subtotal ({basket.length} items):{" "}
+        <strong>
+          {CurrencyFormatter.format(getBasketTotal(basket), { code: "USD" })}
+        </strong>
       </p>
       <small className="subtotal__gift">
         <input type="checkbox" /> This order contains a gift
