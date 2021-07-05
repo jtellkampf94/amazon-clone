@@ -8,7 +8,7 @@ import "./Checkout.scss";
 
 const Checkout: React.FC = () => {
   const {
-    state: { basket }
+    state: { basket, user }
   } = useStateValue();
 
   return (
@@ -21,6 +21,7 @@ const Checkout: React.FC = () => {
         />
 
         <div>
+          <h3>Hello, {user ? user.email : "Guest"}</h3>
           <h2 className="checkout__title">Your Shopping Basket</h2>
 
           {basket.map(item => (

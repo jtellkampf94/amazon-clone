@@ -3,13 +3,20 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 
 import { useStateValue } from "../../context/stateProvider";
+import { auth } from "../../firebase";
 
 import "./Header.scss";
 
 const Header: React.FC = () => {
   const {
-    state: { basket }
+    state: { basket, user }
   } = useStateValue();
+
+  const handleClick = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
 
   return (
     <div className="header">
@@ -27,10 +34,19 @@ const Header: React.FC = () => {
       </div>
 
       <div className="header__nav">
-        <div className="header__option">
-          <span className="header__optionLineOne">Hello Guest</span>
-          <span className="header__optionLineTwo">Sign In</span>
-        </div>
+        {user ? (
+          <div onClick={handleClick} className="header__option">
+            <span className="header__optionLineOne">Hello {user.email}</span>
+            <span className="header__optionLineTwo">Sign Out</span>
+          </div>
+        ) : (
+          <Link to="/login">
+            <div className="header__option">
+              <span className="header__optionLineOne">Hello Guest</span>
+              <span className="header__optionLineTwo">Sign In</span>
+            </div>
+          </Link>
+        )}
 
         <div className="header__option">
           <span className="header__optionLineOne">Returns</span>

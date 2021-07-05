@@ -1,12 +1,15 @@
 import { Item, Action } from "./actions";
 import { ActionTypes } from "./types";
+import firebase from "firebase";
 
 export interface State {
   basket: Item[];
+  user: null | firebase.User;
 }
 
 export const initialState: State = {
-  basket: []
+  basket: [],
+  user: null
 };
 
 export const getBasketTotal = (basket: Item[]) =>
@@ -28,6 +31,8 @@ const reducer = (state: State = initialState, action: Action): State => {
         );
       }
       return { ...state, basket: newBasket };
+    case ActionTypes.SET_USER:
+      return { ...state, user: action.payload };
     default:
       return state;
   }

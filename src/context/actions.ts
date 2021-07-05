@@ -1,4 +1,5 @@
 import { ActionTypes } from "./types";
+import firebase from "firebase";
 
 export interface Item {
   id: string;
@@ -18,4 +19,9 @@ interface RemoveFromBasketAction {
   payload: String;
 }
 
-export type Action = AddToBasketAction | RemoveFromBasketAction;
+interface SetUserAction {
+  type: ActionTypes.SET_USER;
+  payload: null | firebase.User;
+}
+
+export type Action = AddToBasketAction | RemoveFromBasketAction | SetUserAction;
