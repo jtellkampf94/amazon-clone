@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
 import { useStateValue } from "../../context/stateProvider";
@@ -12,6 +13,10 @@ const Payment: React.FC = () => {
   return (
     <div className="payment">
       <div className="payment__container">
+        <h1>
+          Checkout (<Link to="/checkout">{basket?.length} items</Link>)
+        </h1>
+
         <div className="payment__section">
           <div className="payment__title">
             <h3>Delivery Address</h3>
