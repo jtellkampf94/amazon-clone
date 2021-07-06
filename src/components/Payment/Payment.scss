@@ -33,4 +33,26 @@
   &__details {
     flex: 0.8;
   }
+
+  &__details {
+    & > form {
+      max-width: 400px;
+
+      & > div > button {
+        background: $primary-orange;
+        border-radius: 2px;
+        width: 100%;
+        height: 30px;
+        border: 1px solid;
+        font-weight: bolder;
+        margin-top: 10px;
+        border-color: $secondary-orange $tertiary-orange $quarternary-orange;
+        color: $primary-navy;
+      }
+    }
+
+    & > h3 {
+      padding-bottom: 20px;
+    }
+  }
 }

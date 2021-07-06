@@ -24,4 +24,12 @@ interface SetUserAction {
   payload: null | firebase.User;
 }
 
-export type Action = AddToBasketAction | RemoveFromBasketAction | SetUserAction;
+interface EmptyBasketAction {
+  type: ActionTypes.EMPTY_BASKET;
+}
+
+export type Action =
+  | AddToBasketAction
+  | RemoveFromBasketAction
+  | SetUserAction
+  | EmptyBasketAction;

@@ -12,6 +12,7 @@ interface CheckoutProductProps {
   title: string;
   price: number;
   rating: number;
+  hideButton?: boolean;
 }
 
 const CheckoutProduct: React.FC<CheckoutProductProps> = ({
@@ -19,7 +20,8 @@ const CheckoutProduct: React.FC<CheckoutProductProps> = ({
   image,
   title,
   price,
-  rating
+  rating,
+  hideButton
 }) => {
   const { dispatch } = useStateValue();
 
@@ -44,7 +46,9 @@ const CheckoutProduct: React.FC<CheckoutProductProps> = ({
               <StarIcon key={uuidv4()} className="checkoutProduct__star" />
             ))}
         </div>
-        <button onClick={handleClick}>Remove from basket</button>
+        {!hideButton && (
+          <button onClick={handleClick}>Remove from basket</button>
+        )}
       </div>
     </div>
   );

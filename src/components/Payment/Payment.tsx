@@ -8,13 +8,16 @@ import { StripeCardElementChangeEvent } from "@stripe/stripe-js";
 import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
 import { useStateValue } from "../../context/stateProvider";
 import { getBasketTotal } from "../../context/reducer";
+import { ActionTypes } from "../../context/types";
 import axios from "../../utils/axios";
+import { db } from "../../firebase";
 
 import "./Payment.scss";
 
 const Payment: React.FC = () => {
   const {
-    state: { basket, user }
+    state: { basket, user },
+    dispatch
   } = useStateValue();
   const history = useHistory();
 
@@ -55,9 +58,21 @@ const Payment: React.FC = () => {
       });
       const { paymentIntent } = payload;
       if (paymentIntent) {
+        db.collection("users")
+          .doc(user?.uid)
+          .collection("order")
+          .doc(paymentIntent.id)
+          .set({
+            basket,
+            amount: paymentIntent.amount,
+            created: paymentIntent.canceled_at
+          });
+
         setSucceeded(true);
         setError(null);
         setProcessing(false);
+
+        dispatch({ type: ActionTypes.EMPTY_BASKET });
 
         history.replace("/orders");
       }

@@ -8,6 +8,7 @@ import Home from "../Home/Home";
 import Checkout from "../Checkout/Checkout";
 import Login from "../Login/Login";
 import Payment from "../Payment/Payment";
+import Orders from "../Orders/Orders";
 import { auth } from "../../firebase";
 import { useStateValue } from "../../context/stateProvider";
 import { ActionTypes } from "../../context/types";
@@ -33,6 +34,10 @@ const App: React.FC = () => {
     <BrowserRouter>
       <div className="app">
         <Switch>
+          <Route path="/orders">
+            <Header />
+            <Orders />
+          </Route>
           <Route path="/login" component={Login} />
           <Route path="/checkout">
             <Header />
