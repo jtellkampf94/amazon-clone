@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 import Header from "../Header/Header";
 import Home from "../Home/Home";
@@ -11,6 +13,8 @@ import { useStateValue } from "../../context/stateProvider";
 import { ActionTypes } from "../../context/types";
 
 import "./App.scss";
+
+const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || "");
 
 const App: React.FC = () => {
   const { dispatch } = useStateValue();
@@ -36,7 +40,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/payment">
             <Header />
-            <Payment />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
           </Route>
           <Route path="/">
             <Header />
